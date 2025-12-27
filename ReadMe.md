@@ -23,23 +23,35 @@ Output: [2,3,1,3,1,2]
 ```java
 class Solution {
     public void wiggleSort(int[] nums) {
-        int n = nums.length;
-        int[] v = nums.clone();
-        Arrays.sort(v);
-
-        int mid = (n + 1) / 2;
-        int left = mid - 1;
-        int right = n - 1;
-
-        for (int i = 0; i < n; i++) {
-            if (i % 2 == 0)
-                nums[i] = v[left--];
-            else
-                nums[i] = v[right--];
+        int[] op = new int[nums.length];
+        Arrays.sort(nums);
+        int i = 1;
+        int j = nums.length - 1;
+        if(j == 0) {
+            return;
+        }
+        while(j >= 0) {
+            op[i] = nums[j];
+            i = i+2;
+            if(i >= nums.length) {
+                i = 0;
+            }
+            j--;
+        }
+        int h = 0;
+        for(int k: op) {
+            nums[h] = k;
+            h++;
         }
     }
 }
 ```
+
+logic - take extra space of size nums, and sort the nums array
+
+start iterator i from 1 then increment by 2 until it croses the main array length
+
+then if i crosees the nums.length then assign i = 0 then again it will be incremented by 2 till last until j becomes zero.
 
 **88. Merge Sorted Array**
 
@@ -88,7 +100,7 @@ class Solution {
             if(i >= 0 && nums1[i] > nums2[j]) {
                 nums1[k--] = nums1[i--];
             } else
-            nums1[k--] = nums2[j--];
+                nums1[k--] = nums2[j--];
         }
     }
 }
