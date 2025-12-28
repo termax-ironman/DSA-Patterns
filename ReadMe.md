@@ -146,3 +146,59 @@ we will increment end pointer and sum the array values until we find sum is grea
 if greater or equal to target check the length of that array using ep - sp +1 then check it less than infine minimum lenggth or not then if less then only assign the value to minLenth, then reduce the sum starting pointer and increment the pointer
 
 return the minLnth if it’s infinite then return 0 else its value
+
+You may recall that an array `arr` is a **mountain array** if and only if:
+
+- `arr.length >= 3`
+- There exists some index `i` (**0-indexed**) with `0 < i < arr.length - 1` such that:
+    - `arr[0] < arr[1] < ... < arr[i - 1] < arr[i]`
+    - `arr[i] > arr[i + 1] > ... > arr[arr.length - 1]`
+
+Given an integer array `arr`, return *the length of the longest subarray, which is a mountain*. Return `0` if there is no mountain subarray.
+
+**Example 1:**
+
+```
+Input: arr = [2,1,4,7,3,2,5]
+Output: 5
+Explanation: The largest mountain is [1,4,7,3,2] which has length 5.
+```
+
+```java
+class Solution {
+    public int longestMountain(int[] arr) {
+        int ans = 0;
+        for(int i = 1;i < arr.length-1; i++) {
+            if(arr[i-1] < arr[i] && arr[i] > arr[i+1]) {
+                int left = i;
+                int right = i;
+                while(left > 0 && arr[left-1] < arr[left]) {
+                    left--;
+                }
+                while(right < arr.length - 1 && arr[right] > arr[right+1]) {
+                    right++;
+                }
+                ans = Math.max(ans, right - left +1);
+            }
+        }
+        return ans;
+    }
+}
+```
+
+First, we iterate through the array to find a **peak element**, where the previous element is smaller than the current element and the next element is also smaller than the current element.
+
+Once a peak is found, we initialize two pointers:
+
+- One pointer moves **left** as long as the previous element is strictly smaller than the current element (uphill).
+- Another pointer moves **right** as long as the next element is strictly smaller than the current element (downhill).
+
+This helps us identify the **start and end indices** of the mountain.
+
+The length of the current mountain is calculated as:
+
+```
+right -left +1
+```
+
+Since there can be multiple mountains in the array, we keep updating the maximum length found so far and return it as the final answer.
