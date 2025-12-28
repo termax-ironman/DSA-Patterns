@@ -108,6 +108,8 @@ class Solution {
 
 Given an array of positive integers `nums` and a positive integer `target`, return *the **minimal length** of a subarray whose sum is greater than or equal to* `target`. If there is no such subarray, return `0` instead.
 
+**209. Minimum Size Subarray Sum**
+
 **Example 1:**
 
 ```
@@ -146,6 +148,8 @@ we will increment end pointer and sum the array values until we find sum is grea
 if greater or equal to target check the length of that array using ep - sp +1 then check it less than infine minimum lenggth or not then if less then only assign the value to minLenth, then reduce the sum starting pointer and increment the pointer
 
 return the minLnth if it’s infinite then return 0 else its value
+
+**845. Longest Mountain in Array**
 
 You may recall that an array `arr` is a **mountain array** if and only if:
 
