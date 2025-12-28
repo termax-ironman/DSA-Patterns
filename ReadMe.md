@@ -77,3 +77,15 @@ simple
 we need to iterate throuh out the array and check if current element is more than the previous element or not till when it is more we will track that counter and store it in ans variable if current element is less than the previous then we will set the array length counter to 1.
 
 return the ans
+
+**1423. Maximum Points You Can Obtain from Cards**
+
+**Example 1:**
+
+```
+Input: cardPoints = [1,2,3,4,5,6,1], k = 3
+Output: 12
+Explanation: After the first step, your score will always be 1. However, choosing the rightmost card first will maximize your total score. The optimal strategy is to take the three cards on the right, giving a final score of 1 + 6 + 5 = 12.
+```
+
+you need to print the difference between totalsum- ((n-k) subarray’s min sum) then only we can find the maximum of k numbers.
