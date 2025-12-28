@@ -100,8 +100,49 @@ class Solution {
             if(i >= 0 && nums1[i] > nums2[j]) {
                 nums1[k--] = nums1[i--];
             } else
-                nums1[k--] = nums2[j--];
+            nums1[k--] = nums2[j--];
         }
     }
 }
 ```
+
+Given an array of positive integers `nums` and a positive integer `target`, return *the **minimal length** of a subarray whose sum is greater than or equal to* `target`. If there is no such subarray, return `0` instead.
+
+**Example 1:**
+
+```
+Input: target = 7, nums = [2,3,1,2,4,3]
+Output: 2
+Explanation: The subarray [4,3] has the minimal length under the problem constraint.
+```
+
+```java
+class Solution {
+    public int minSubArrayLen(int target, int[] nums) {
+        int a = 0;
+        int b = Integer.MAX_VALUE;
+        for(int c = 0, d = 0; c < nums.length; c++) {
+            a += nums[c];
+            while(a >= target) {
+                int e = c - d +1;
+                if(e < b) {
+                    b = e;
+                }
+                a = a - nums[d];
+                d++;
+            }
+        }
+        return b == Integer.MAX_VALUE ? 0 : b;
+    }
+}
+```
+
+we will use two pointer technique
+
+start from first element
+
+we will increment end pointer and sum the array values until we find sum is greater or equal to target
+
+if greater or equal to target check the length of that array using ep - sp +1 then check it less than infine minimum lenggth or not then if less then only assign the value to minLenth, then reduce the sum starting pointer and increment the pointer
+
+return the minLnth if it’s infinite then return 0 else its value
