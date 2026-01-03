@@ -1,5 +1,3 @@
-package Array.sorting;
-
 /*
 *  42531 -- position index turns into realnumber and value turns into index of new number
 *  valid number means if it contains 3 numbers then it should contain 123 in anyorder
