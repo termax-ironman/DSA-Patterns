@@ -1,6 +1,6 @@
 public class P6 {
     public static void main(String[] args) {
-        int n = 5;
+        int n = 9;
 /*
 * * *  * * *
 * *      * *
@@ -15,6 +15,7 @@ public class P6 {
 //        3 1 3
         int st1 = n/2 + 1;
         int sp = 1;
+        long start = System.currentTimeMillis();
         for(int i = 1; i <= n; i++){
             for(int j = 1; j <= st1; j++){
                 System.out.print("*");
@@ -34,5 +35,7 @@ public class P6 {
             }
             System.out.println();
         }
+        long end = System.currentTimeMillis();
+        System.out.println(end-start);
     }
 }
