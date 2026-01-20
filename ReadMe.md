@@ -27,15 +27,17 @@ Output: 2
 Explanation: The subarray [4,3] has the minimal length under the problem constraint.
 ```
 
-we will use two pointer technique
+```
+for (end = 0 → n) {
+add nums[end]
 
-start from first element
-
-we will increment end pointer and sum the array values until we find sum is greater or equal to target
-
-if greater or equal to target check the length of that array using ep - sp +1 then check it less than infine minimum lenggth or not then if less then only assign the value to minLenth, then reduce the sum starting pointer and increment the pointer
-
-return the minLnth if it’s infinite then return 0 else its value
+while (condition satisfied) {
+    update answer
+    remove nums[start]
+    start++
+}
+}
+```
 
 **845. Longest Mountain in Array**
 
@@ -108,3 +110,146 @@ The greatest common divisor of 2 and 10 is 2.
 ```
 
 take min and and max using Arrays.sort(nums) then find gcd.
+
+**Longest Substring with K Uniques**
+
+You are given a string **s** consisting only lowercase alphabets and an integer **k**. Your task is to find the **length** of the **longest substring** that contains exactly **k** distinct characters.
+
+**Note :** If no such substring exists, return **-1**.
+
+**Examples:**
+
+```
+Input:s = "aabacbebebe", k = 3
+Output: 7
+Explanation: The longest substring with exactly 3 distinct characters is "cbebebe", which includes 'c', 'b', and 'e'.
+
+```
+
+```
+Input: s = "aaaa", k = 2
+Output: -1
+Explanation: There's no substring with 2 distinct characters.
+
+```
+
+```
+Input:s = "aabaaab", k = 2
+Output: 7
+Explanation:The entire string "aabaaab" has exactly 2 unique characters 'a' and 'b', making it the longest valid substring.
+```
+
+```
+for windowEnd = 0 → n-1
+add right character to map
+
+while map.size() > K
+    remove left character from map
+    move windowStart++
+
+update maxLength
+```
+
+**3. Longest Substring Without Repeating Characters**
+
+Given a string `s`, find the length of the **longest** **substring** without duplicate characters.
+
+**Example 1:**
+
+```
+Input: s = "abcabcbb"
+Output: 3
+Explanation: The answer is "abc", with the length of 3. Note that "bca" and "cab" are also correct answers.
+
+```
+
+**Example 2:**
+
+```
+Input: s = "bbbbb"
+Output: 1
+Explanation: The answer is "b", with the length of 1.
+
+```
+
+**Example 3:**
+
+```
+Input: s = "pwwkew"
+Output: 3
+Explanation: The answer is "wke", with the length of 3.
+Notice that the answer must be a substring, "pwke" is a subsequence and not a substring.
+```
+
+O(n^2)(set)
+
+```java
+for end from 0 to n-1:
+	while s[end] is already in set:
+	remove s[start] from set
+	start++
+add s[end] to set
+update max_length = max(max_length, end - start + 1)
+```
+
+O(n) (map)
+
+```java
+for end = 0 → n-1
+    if current char seen before
+        move start to max(start, lastSeen[char] + 1)
+
+    update lastSeen[char] = end
+    update maxLen
+```
+
+**904. Fruit Into Baskets**
+
+You are visiting a farm that has a single row of fruit trees arranged from left to right. The trees are represented by an integer array `fruits` where `fruits[i]` is the **type** of fruit the `ith` tree produces.
+
+You want to collect as much fruit as possible. However, the owner has some strict rules that you must follow:
+
+- You only have **two** baskets, and each basket can only hold a **single type** of fruit. There is no limit on the amount of fruit each basket can hold.
+- Starting from any tree of your choice, you must pick **exactly one fruit** from **every** tree (including the start tree) while moving to the right. The picked fruits must fit in one of your baskets.
+- Once you reach a tree with fruit that cannot fit in your baskets, you must stop.
+
+Given the integer array `fruits`, return *the **maximum** number of fruits you can pick*.
+
+**Example 1:**
+
+```
+Input: fruits = [1,2,1]
+Output: 3
+Explanation: We can pick from all 3 trees.
+
+```
+
+**Example 2:**
+
+```
+Input: fruits = [0,1,2,2]
+Output: 3
+Explanation: We can pick from trees [1,2,2].
+If we had started at the first tree, we would only pick from trees [0,1].
+
+```
+
+**Example 3:**
+
+```
+Input: fruits = [1,2,3,2,2]
+Output: 4
+Explanation: We can pick from trees [2,3,2,2].
+If we had started at the first tree, we would only pick from trees [1,2].
+```
+
+```java
+for end from 0 to n-1
+    add fruits[end] to map
+
+    while map.size() > 2
+        remove fruits[start] from map
+        start++
+
+    update max length
+```
