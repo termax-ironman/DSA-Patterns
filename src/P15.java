@@ -22,9 +22,9 @@ public class P15 {
                     System.out.print(" ");
                 }
                 for (int j = 1; j <= st; j++) {
-                    int mid = st / 2;
+                    int mid1 = st / 2;
                     System.out.print(g);
-                    if (j > mid) {
+                    if (j > mid1) {
                         --g;
                     } else {
                         ++g;
