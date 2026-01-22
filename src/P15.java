@@ -1,5 +1,3 @@
-import com.sun.security.jgss.GSSUtil;
-
 public class P15 {
     public static void main(String[] args) {
 
@@ -10,25 +8,40 @@ public class P15 {
         * 1 3
         * 2 1
         * */
-        int n = 5;
+        int n = 6;
         int sp = n/2;
         int st = 1;
+        int p = 1;
         for(int i = 1; i <= n ; i++) {
-            for(int j =  1; j <= sp; j++) {
-                System.out.print(" ");
-            }
-            for(int j = 1; j <= st; j++) {
-                System.out.print(j);
-            }
-
-            if(i <= n/2) {
-                sp--;
-                st = st + 2;
+            if(n % 2 == 0) {
+                System.out.println("please provide odd number");
+                break;
             } else {
-                sp++;
-                st = st - 2;
+                int g = p;
+                for (int j = 1; j <= sp; j++) {
+                    System.out.print(" ");
+                }
+                for (int j = 1; j <= st; j++) {
+                    int mid = st / 2;
+                    System.out.print(g);
+                    if (j > mid) {
+                        --g;
+                    } else {
+                        ++g;
+                    }
+                }
+
+                if (i <= n / 2) {
+                    sp--;
+                    st = st + 2;
+                    p++;
+                } else {
+                    sp++;
+                    st = st - 2;
+                    p--;
+                }
+                System.out.println();
             }
-            System.out.println();
         }
     }
 }
