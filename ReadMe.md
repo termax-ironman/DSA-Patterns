@@ -253,3 +253,73 @@ for end from 0 to n-1
 
     update max length
 ```
+
+**424. Longest Repeating Character Replacement**
+
+You are given a string `s` and an integer `k`. You can choose any character of the string and change it to any other uppercase English character. You can perform this operation at most `k` times.
+
+Return *the length of the longest substring containing the same letter you can get after performing the above operations*.
+
+**Example 1:**
+
+```
+Input: s = "ABAB", k = 2
+Output: 4
+Explanation: Replace the two 'A's with two 'B's or vice versa.
+
+```
+
+**Example 2:**
+
+```
+Input: s = "AABABBA", k = 1
+Output: 4
+Explanation: Replace the one 'A' in the middle with 'B' and form "AABBBBA".
+The substring "BBBB" has the longest repeating letters, which is 4.
+There may exists other ways to achieve this answer too.
+```
+
+```java
+[ windowStart ........ windowEnd ]
+windowSize = end - start + 1
+badChars   = windowSize - maxRepeatLetterCount
+
+if badChars <= k → VALID
+```
+
+### **Triplets with Smaller Sum**
+
+Difficulty: **Medium**Accuracy: **40.33%**Submissions: **107K+**Points: **4**
+
+Given an array **arr[]** of distinct integers of size **n** and a value **sum**, the task is to find the count of triplets **(i, j, k)**, having **(i<j<k)** with the sum of **(arr[i] + arr[j] + arr[k])** smaller than the given value sum.
+
+**Examples :**
+
+```
+
+Input: n = 4, sum = 2, arr[] = {-2, 0, 1, 3}
+Output:2
+Explanation:Below are triplets with sum less than 2 (-2, 0, 1) and (-2, 0, 3).
+
+```
+
+```
+Input: n = 5, sum = 12, arr[] = {5, 1, 3, 4, 7}
+Output:4
+Explanation:Below are triplets with sum less than 12 (1, 3, 4), (1, 3, 5), (1, 3, 7) and (1, 4, 5).
+```
+
+```java
+1. Sort the array
+2. Fix first index i
+3. left = i + 1, right = n - 1
+
+4. while left < right:
+      if arr[i] + arr[left] + arr[right] < K:
+           count += (right - left)
+           left++
+      else:
+           right--
+```
+
+**713. Subarray Product Less Than K - must do(due)**
