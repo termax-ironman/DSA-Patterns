@@ -322,4 +322,26 @@ Explanation:Below are triplets with sum less than 12 (1, 3, 4), (1, 3, 5), (1, 3
            right--
 ```
 
-**713. Subarray Product Less Than K - must do(due)**
+[**713. Subarray Product Less Than K**](https://leetcode.com/problems/subarray-product-less-than-k/)
+
+Given an array of integers `nums` and an integer `k`, return *the number of contiguous subarrays where the product of all the elements in the subarray is strictly less than* `k`.
+
+**Example 1:**
+
+```
+Input: nums = [10,5,2,6], k = 100
+Output: 8
+Explanation: The 8 subarrays that have product less than 100 are:
+[10], [5], [2], [6], [10, 5], [5, 2], [2, 6], [5, 2, 6]
+Note that [10, 5, 2] is not included as the product of 100 is not strictly less than k.
+
+```
+
+**Example 2:**
+
+```
+Input: nums = [1,2,3], k = 0
+Output: 0
+```
+
+Imagine a **sliding window** where numbers keep entering from the right; every time a new number enters, the product of the window increases, and if this product becomes **greater than or equal to `k`**, we start removing numbers from the left until the product becomes valid again (**< `k`**); the moment the window becomes valid, the key insight is that **all contiguous subarrays ending at the current position are also valid** (`[start..i], [start+1..i] … [i..i]`), so in one step we add **`i - start + 1`** to the count; this process repeats for every index, and because all numbers are positive the product behaves monotonically, which is why the sliding window approach works—just remember one edge case: if **`k <= 1`**, the answer is always **0**.
